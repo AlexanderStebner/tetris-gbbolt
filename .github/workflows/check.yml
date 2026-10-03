@@ -1,0 +1,49 @@
+# Rebuilds the ROM from source (it must match the sha1 in game.json - no ROM file is
+# needed) and checks every annotation with gbbolt. The site itself is built by the
+# gbbolt repository (nightly, or right away if GBBOLT_DISPATCH_TOKEN is set).
+name: Check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: AlexanderStebner/gbbolt
+          path: .gbbolt
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Python packages
+        run: pip install numpy
+
+      - name: RGBDS
+        run: |
+          mkdir -p "$HOME/rgbds"
+          curl -sSL https://github.com/gbdev/rgbds/releases/download/v1.0.1/rgbds-linux-x86_64.tar.xz | tar -xJ -C "$HOME/rgbds"
+          dirname "$(find "$HOME/rgbds" -name rgbasm -type f | head -1)" >> "$GITHUB_PATH"
+
+      - name: Build and verify
+        run: python .gbbolt/tools/gbbolt.py verify --strict
+        env:
+          GBBOLT_ROOT: ${{ github.workspace }}
+
+      - name: Rebuild the site
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.GBBOLT_DISPATCH_TOKEN }}
+        run: |
+          if [ -n "$GH_TOKEN" ]; then
+            gh api repos/AlexanderStebner/gbbolt/dispatches -f event_type=game-updated
+          else
+            echo "no GBBOLT_DISPATCH_TOKEN secret: the site picks this up in its nightly build"
+          fi

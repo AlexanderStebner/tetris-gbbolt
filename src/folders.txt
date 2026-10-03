@@ -1,0 +1,55 @@
+# Virtual folders, in reading order: path | description
+# Functions say where they live with `;@ path: folder/sub`; data blocks without a
+# path go to the folder of the functions that use them.
+boot | Power-on, interrupt vectors and the main loop that runs one game state per frame.
+boot/vectors | The fixed addresses the CPU jumps to: restarts, interrupts, the cartridge entry point.
+boot/header | The cartridge header: logo, title, cartridge type, checksums.
+system | Hardware services used everywhere.
+system/interrupts | The VBlank and timer interrupt handlers.
+system/link | The link cable: serial interrupt, handshakes, byte exchange.
+system/lcd | Switching the LCD off, the OAM DMA routine in HRAM.
+system/input | Reading the joypad.
+lib | Small general routines.
+lib/memory | Copying memory blocks.
+lib/math | BCD arithmetic.
+lib/timing | Busy-wait delays.
+gfx | Getting things onto the screen.
+gfx/tiles | Loading tile graphics into VRAM.
+gfx/tilemaps | Background maps: whole screens, blocks, single tiles.
+gfx/objects | Sprites: object records, drawing them into the shadow OAM, blinking cursors.
+gfx/numbers | Drawing BCD numbers.
+screens | The screens around the game itself.
+screens/copyright | The copyright screen shown at power-on.
+screens/title | The title screen.
+screens/demo | The attract-mode demo: playback and recording of button presses.
+screens/menus | Game type and music menu.
+screens/level_select | Level (and type B height) selection.
+screens/high_scores | Top-3 tables and name entry.
+game | Single-player Tetris.
+game/setup | Starting a game: board, score, speed, type B garbage.
+game/loop | The playing state, pause.
+game/piece | Spawning, moving, rotating, falling and locking pieces.
+game/lines | Finding full rows, the line clear animation, collapsing the board.
+game/board_refresh | Copying the board to VRAM over several frames.
+game/score | Points, lines and levels.
+game/game_over | Topping out and the game over screen.
+game/tally | The type B score tally.
+versus | The 2-player game over the link cable.
+versus/menu | Music and handicap height selection on both Game Boys.
+versus/setup | Dealing pieces and garbage, syncing both sides before a round.
+versus/play | A round: exchanging stack heights, garbage and results.
+versus/results | Round and match results: animations, cups, the deuce rule.
+endings | The rewards for good games.
+endings/dancers | Type B: the dancers.
+endings/shuttle | Type B at height 5: the space shuttle launch.
+endings/rocket | Type A: the rocket launch.
+endings/shared | Smoke and tile column helpers both launches use.
+sound | The sound engine (runs once per frame from VBlank).
+sound/api | The engine's entry points and the per-frame update.
+sound/sfx | Sound effects on the square, wave and noise channels.
+sound/sfx/common | Starting effects, writing channel registers, effect timing.
+sound/sfx/square | Square channel effects 1-8.
+sound/sfx/wave | Wave channel effects 1-2.
+sound/sfx/noise | Noise channel effects 1-4.
+sound/music | The music sequencer: songs, patterns, notes, instruments, vibrato, panning.
+sound/music/songs | The song data: per song a header, a pattern list per channel, the patterns.

@@ -1,0 +1,30 @@
+{
+  "_doc": "Facts about this game that the gbbolt tools need. Names are labels / RAM names of the disassembly. Everything is optional except rom.",
+  "id": "tetris",
+  "rom": "tetris.gb",
+  "sha1": "74591cc9501af93873f9a5d3eb12da12c0723bbc",
+  "title": "TETRIS",
+  "main": "game.asm",
+  "link_flags": ["--tiny"],
+  "fix_flags": ["-v", "-p", "255"],
+  "entry": "Boot",
+  "graph_root": "MainLoop",
+  "jump_table_rst": "0x28",
+  "trace_entries": {"0x0153": "Unreferenced_0153"},
+  "test_memory": {
+    "_doc": "where the differential tests put the stack, and which WRAM they hand out to rand_ram()",
+    "stack_top": "0xDF00",
+    "stack_zone": ["0xDE00", "0xDF00"],
+    "free_ram": ["0xC000", "0xDE00"]
+  },
+  "sprites": {
+    "_doc": "how to draw one sprite id with the game's own code (for `;@ asset: sprites`): write the object record, set the variables, call the routine, read the OAM entries it wrote",
+    "routine": "DrawObjects",
+    "hl": "wObjects",
+    "record_at": "wObjects",
+    "record": [0, 80, 80, "id", 0, 0, 0],
+    "set": {"hObjCount": 1, "hOAMPtrHi": "0xC0", "hOAMPtrLo": 0, "hObjHidden": 0},
+    "oam": "wShadowOAM",
+    "oam_end": ["hOAMPtrHi", "hOAMPtrLo"]
+  }
+}

@@ -1,0 +1,9 @@
+# never commit ROMs
+*.gb
+*.gbc
+*.sav
+# build output and tracer data (regenerated)
+out/
+*.sym
+.gbbolt/
+__pycache__/
