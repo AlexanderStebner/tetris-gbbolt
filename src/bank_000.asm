@@ -12734,7 +12734,7 @@ DrawObjects::
 
 ;@ asset: sprites count=$5E tiles=LoadGameTiles|LoadTitleTiles|LoadTilesToVRAM(hl=CutsceneTiles,bc=$1000)
 ;@ All sprites (metasprites) the object engine can draw, indexed by sprite id.
-;@ Each one is drawn here by running DrawObjects in the emulator.
+;@ Each one is drawn here by the game's own DrawObjects.
 SpriteTable::
 	db $20, $2c, $24, $2c, $28, $2c, $2c, $2c, $30, $2c, $34, $2c, $38, $2c, $3c, $2c
 	db $40, $2c, $44, $2c, $48, $2c, $4c, $2c, $50, $2c, $54, $2c, $58, $2c, $5c, $2c
