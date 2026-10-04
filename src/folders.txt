@@ -44,7 +44,7 @@ endings/dancers | Type B: the dancers.
 endings/shuttle | Type B at height 5: the space shuttle launch.
 endings/rocket | Type A: the rocket launch.
 endings/shared | Smoke and tile column helpers both launches use.
-sound | The sound engine (runs once per frame from VBlank).
+sound | The sound engine (runs once per frame from the main loop).
 sound/api | The engine's entry points and the per-frame update.
 sound/sfx | Sound effects on the square, wave and noise channels.
 sound/sfx/common | Starting effects, writing channel registers, effect timing.
