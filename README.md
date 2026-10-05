@@ -4,7 +4,7 @@
 
 A complete, matching disassembly of *Tetris* for the Game Boy (Nintendo, 1989), with
 pseudo-code written next to every function and checked against the original code in an
-emulator. It is read with [gbbolt](https://github.com/AlexanderStebner/gbbolt): code
+emulator. It is read with [gbbolt](https://github.com/gbbolt/gbbolt): code
 and pseudo-code side by side, linked line by line.
 
 - **282 of 282 functions** have pseudo-code: 211 are verified by differential testing
@@ -28,8 +28,8 @@ The disassembly rebuilds the original ROM byte for byte. You need
 folder:
 
 ```
-git clone https://github.com/AlexanderStebner/gbbolt
-git clone https://github.com/AlexanderStebner/tetris-gbbolt
+git clone https://github.com/gbbolt/gbbolt
+git clone https://github.com/gbbolt/tetris-gbbolt
 cd tetris-gbbolt
 python ../gbbolt/tools/gbbolt.py            # build, verify, write out/site/index.html
 python ../gbbolt/tools/audio.py             # render the music (needs ffmpeg)

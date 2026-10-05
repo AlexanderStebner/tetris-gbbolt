@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: AlexanderStebner/gbbolt
+          repository: gbbolt/gbbolt
           path: .gbbolt
 
       - uses: actions/setup-python@v5
@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GBBOLT_DISPATCH_TOKEN }}
         run: |
           if [ -n "$GH_TOKEN" ]; then
-            gh api repos/AlexanderStebner/gbbolt/dispatches -f event_type=game-updated
+            gh api repos/gbbolt/gbbolt/dispatches -f event_type=game-updated
           else
             echo "no GBBOLT_DISPATCH_TOKEN secret: the site picks this up in its nightly build"
           fi
